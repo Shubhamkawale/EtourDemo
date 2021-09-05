@@ -1,0 +1,43 @@
+package com.GRP13.ETour.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.GRP13.ETour.Models.Tours;
+import com.GRP13.ETour.Repository.ToursRepository;
+
+@Service
+public class TourService {
+	
+	@Autowired
+	private ToursRepository tourRepository;
+	
+	//returns all tours
+	public List<Tours> getAllTour() {
+		return tourRepository.findAll();
+	}
+
+	//delete a specific tour
+	public void deleteTour(Integer tour_id) {
+		tourRepository.deleteById(tour_id);
+	}
+	
+	//returns a specific tour
+	public Tours getTour(Integer tour_id) {
+		return tourRepository.findById(tour_id).get();
+	}
+	
+	//adds a tour to DB
+	public void addTour(Tours tour) {
+		tourRepository.save(tour);
+	}
+	
+	//update no of seats available per tour
+	public void addSeat(int seats, int tour_id) 
+	{
+		tourRepository.addSeat(seats, tour_id);
+	}
+		
+}
