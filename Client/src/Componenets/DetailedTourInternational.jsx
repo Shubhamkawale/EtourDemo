@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardGroup, Card, Button, Image } from 'react-bootstrap'
+import {  Card, Button } from 'react-bootstrap'
 import TourService from '../Services/TourService';
 
 
@@ -32,16 +32,19 @@ class DetailedTourInternational extends Component {
 
     render() {
         return (
-            <div style={{ "margin": "90px" }}>
+            <div>
+                <h1>International tours</h1>
+                <div  className="grids">
 
 
 
-                <h1>Detailed tours</h1>
-                <CardGroup>
+
+
                     {
                         this.state.tours.map(
                             tour =>
-                                <Card style={{ width: '18rem' }}>
+
+                                <Card className="cardTours">
                                     <Card.Img variant="top" src={tour.img} />
                                     <Card.Body>
                                         <Card.Title>{tour.package_name}</Card.Title>
@@ -58,10 +61,10 @@ class DetailedTourInternational extends Component {
 
                         )
                     }
-                </CardGroup>
 
 
-               
+                </div>
+
             </div>
         );
     }

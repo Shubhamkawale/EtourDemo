@@ -52,3 +52,32 @@ footer{
 body{
   background-color:#f5fbfc;
 }
+
+.grids{
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  
+  margin: 90px 160px;
+}
+
+
+
+.cardTours
+{
+   width: 18rem;
+  margin:10px;
+  box-shadow: 0px 12px 18px -6px rgba(0,0,0,0.3);
+  border-radius: 10px 10px;
+ 
+ }
+
+ .formSign{
+    padding:30px;
+    align-items: center;
+ }
+
+.error{
+  color:red;
+}

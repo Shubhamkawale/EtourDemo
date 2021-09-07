@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-
-import { useFormik, Formik, Form, Field, ErrorMessage, FormikControl } from 'formik'
+import {  Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
 export default class BookingForm extends Component {
@@ -111,7 +110,7 @@ const Booking = () => {
 
         
       </p>
-      <button type="submit" disabled={props.isValid==false}>Submit</button>
+      <button type="submit" disabled={props.isValid===false}>Submit</button>
 
     </Form>
 

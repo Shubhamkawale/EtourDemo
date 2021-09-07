@@ -12,13 +12,15 @@ public class Login {
 	private int user_id;
 	private String password;
 	private String user_name;
+	private String email;
 	
-	
-	public Login(int user_id, String password, String user_name) {
+
+	public Login(int user_id, String password, String user_name,String email) {
 		super();
 		this.user_id = user_id;
 		this.password = password;
 		this.user_name = user_name;
+		this.email=email;
 	}
 	public Login() {
 		super();
@@ -44,7 +46,12 @@ public class Login {
 		this.user_name = user_name;
 	}
 	
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 
 }

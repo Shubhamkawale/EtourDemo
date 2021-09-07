@@ -13,11 +13,10 @@ export default function Footer() {
           <div className="col-2">
            
             <ul className="nav flex-column">
-              <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Home</a></li>
-              <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Features</a></li>
-              <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">Pricing</a></li>
-              <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">FAQs</a></li>
-              <li className="nav-item mb-2"><a href="#" className="nav-link p-0 text-muted">About</a></li>
+              <li className="nav-item mb-2"><a href="/" className="nav-link p-0 text-muted">Home</a></li>
+              <li className="nav-item mb-2"><a href="/view-Tour/I" className="nav-link p-0 text-muted">International</a></li>
+              <li className="nav-item mb-2"><a href="/view-Tour/D" className="nav-link p-0 text-muted">Domestic</a></li>
+              <li className="nav-item mb-2"><a href="/" className="nav-link p-0 text-muted">About</a></li>
             </ul>
           </div>
 

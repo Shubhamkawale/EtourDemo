@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Carousel, Button } from "react-bootstrap"
+import {Link} from 'react-router-dom'
 
 
 
 
 class TourType extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = { D: 'D', I: 'I'}
-    
-    }
-    
-   
-    viewTour(tour_type){
-        this.props.history.push(`/view-Tour/${tour_type}`);
-    }
-    
-
+  
     render() {
         return (
             <div>
@@ -66,9 +55,10 @@ class TourType extends Component {
                         </Col>
                         <Col sm={4}>
                             International text
-                           
-                                        <Button variant="primary" size="lg" active onClick={() => this.viewTour(this.state.I)} >     International button  </Button>
-                                
+                            <Link to={{ pathname: "/view-Tour/I"}} >
+
+                                        <Button variant="primary" size="lg" active >     International button  </Button>
+                                </Link>
 
                         </Col>
                     </Row>
@@ -80,10 +70,10 @@ class TourType extends Component {
 
                             For a nicer experience with checked state management use the  instead of a  component. The group behaves as a form component, where the value is an array of the selected values for a named checkbox group or the single toggled value in a similarly named radio group.
 
-                            
-                                        <Button variant="primary" size="lg" active onClick={() => this.viewTour(this.state.D)} >
+                            <Link to={{ pathname: "/view-Tour/D"}} >
+                                        <Button variant="primary" size="lg" active  >
                                             domestic button  </Button>
-                            
+                                            </Link>
 
                         </Col>
                         <Col sm={8}> <Carousel>
