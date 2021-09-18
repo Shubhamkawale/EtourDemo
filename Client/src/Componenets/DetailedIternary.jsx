@@ -30,10 +30,12 @@ export default class DetailedIternary extends Component {
 
 
                     <Card style={{ width: '340px', "height": "350px", "padding": "5px", "marging-left": "50px" }} history={this.props.history}>
-                        <img src={this.state.tour.img} style={{ "height": "200px", "padding": "5px" }} />
+                        <Card.img src={this.state.tour.img} style={{ "height": "200px", "padding": "5px" }} />
                         <Card.Body>
+                            { /*table tour*/ }
                             <Card.Title>{this.state.tour.package_name}</Card.Title>
                             <Card.Text>
+                            { /*table iternary*/ }
                                 {this.state.iternary.day1}
                             </Card.Text>
                         </Card.Body>

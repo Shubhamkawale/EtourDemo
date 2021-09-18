@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {  Card, Button } from 'react-bootstrap'
+import { Card, Button } from 'react-bootstrap'
 import TourService from '../Services/TourService';
+import { Link } from 'react-router-dom'
 
 
 
@@ -45,7 +46,13 @@ class DetailedTourDomestic extends Component {
                                         <Card.Text>
                                             {tour.package_desc}
                                         </Card.Text>
-                                        <Button variant="primary">Book Tour</Button>
+                                        <Link to={{
+                                            pathname: "/iternary/",
+                                            state: this.state.tour.tour_id
+                                        }}>
+                                            <Button variant="primary" style={{ width: '300px' }} >
+                                                Show Tour</Button>
+                                        </Link>
                                     </Card.Body>
                                 </Card>
 
