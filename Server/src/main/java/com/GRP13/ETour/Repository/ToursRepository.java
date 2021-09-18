@@ -27,6 +27,20 @@ public interface ToursRepository extends JpaRepository<Tours,Integer>{
 	@Query("SELECT t FROM Tours t WHERE t.tour_type = :type ")
 	public List<Tours> getToursByType(@Param("type") String type);
 	
+	
+	@Modifying(clearAutomatically = true)
+	@Transactional
+	@Query("SELECT t FROM Tours t WHERE t.top_rated = :rate ")
+	public List<Tours> getTourByRating(@Param("rate") String rate);
+	
+	@Transactional
+	@Query(value="SELECT * FROM Tours t WHERE t.start_date>= :startingdate AND t.end_date<= :enddate", nativeQuery = true)
+	public List<Tours> getTourByDate(@Param("startingdate") String start_date, @Param("enddate") String enddate);
+	
+	
+	@Query(value="SELECT * FROM Tours t WHERE t.tour_span<= :span", nativeQuery = true)
+	public List<Tours> getTourBySpan(@Param("span") int span);
+	
 }
 
 

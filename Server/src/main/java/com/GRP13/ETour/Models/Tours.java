@@ -1,5 +1,6 @@
 package com.GRP13.ETour.Models;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -16,14 +17,17 @@ public class Tours {
 	private String package_type;
 	private String package_name;
 	private String package_desc;
-	private String start_date;
-	private String end_date;
 	private int filled_seats;
 	private String img;
+	private String top_rated;
+	private LocalDate start_date;
+	private LocalDate end_date;
+    private int tour_span;
 	
 	
 
 	
+
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="tour_id")
 	private Set<Booking> bookings;
@@ -32,9 +36,13 @@ public class Tours {
 	private int package_cost;
 	
 	
+	
+	
+	
+
 	public Tours(int tour_id, String tour_type, String tour_location, String package_type, String package_name,
-			String package_desc, String start_date, String end_date, int no_of_travellers,int filled_seats,
-			int package_cost, String img) {
+			String package_desc, int filled_seats, String img, String top_rated, LocalDate start_date,
+			LocalDate end_date, int tour_span, Set<Booking> bookings, int no_of_travellers, int package_cost) {
 		super();
 		this.tour_id = tour_id;
 		this.tour_type = tour_type;
@@ -42,16 +50,56 @@ public class Tours {
 		this.package_type = package_type;
 		this.package_name = package_name;
 		this.package_desc = package_desc;
+		this.filled_seats = filled_seats;
+		this.img = img;
+		this.top_rated = top_rated;
 		this.start_date = start_date;
 		this.end_date = end_date;
-		
+		this.tour_span = tour_span;
+		this.bookings = bookings;
 		this.no_of_travellers = no_of_travellers;
 		this.package_cost = package_cost;
-		this.filled_seats=filled_seats;
-		this.img=img;
-		
 	}
-	
+
+
+	public LocalDate getStart_date() {
+		return start_date;
+	}
+
+
+	public void setStart_date(LocalDate start_date) {
+		this.start_date = start_date;
+	}
+
+
+	public LocalDate getEnd_date() {
+		return end_date;
+	}
+
+
+	public void setEnd_date(LocalDate end_date) {
+		this.end_date = end_date;
+	}
+
+
+	public int getTour_span() {
+		return tour_span;
+	}
+
+
+	public void setTour_span(int tour_span) {
+		this.tour_span = tour_span;
+	}
+
+
+	public String getTop_rated() {
+		return top_rated;
+	}
+
+
+	public void setTop_rated(String top_rated) {
+		this.top_rated = top_rated;
+	}
 	
 	public String getImg() {
 		return img;
@@ -111,19 +159,7 @@ public class Tours {
 	public void setPackage_desc(String package_desc) {
 		this.package_desc = package_desc;
 	}
-	public String getStart_date() {
-		return start_date;
-	}
-	public void setStart_date(String start_date) {
-		this.start_date = start_date;
-	}
-	public String getEnd_date() {
-		return end_date;
-	}
-	public void setEnd_date(String end_date) {
-		this.end_date = end_date;
-	}
-
+	
 	public int getNo_of_travellers() {
 		return no_of_travellers;
 	}

@@ -44,4 +44,21 @@ public class TourService {
 	public List<Tours> getTourByType(String type){
 		return tourRepository.getToursByType(type);
 	}
+	
+	//to get tour toprated
+		public List<Tours> getTourByRating(String rate){
+			return tourRepository.getTourByRating(rate);
+		}
+		
+		
+		//to get tours by date
+		public List<Tours> getTourByDate(String startdate, String enddate)
+		{
+			return tourRepository.getTourByDate(startdate, enddate);
+		}
+		
+		//to get tour by span
+		public List<Tours> getTourBySpan(int span){
+			return tourRepository.getTourBySpan(span);
+		}	
 }

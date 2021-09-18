@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap'
 import TourService from '../Services/TourService';
 
@@ -9,45 +10,48 @@ export default class PackagesCard extends Component {
         super(props);
 
         this.state = {
-            tour: {}
+            tours: [],
+            top_rated: "top"
         }
-        
     }
 
-    book(tour_id) {
-        this.props.history.push("/book-Tour/:id");
-    }
+
 
     componentDidMount() {
-        TourService.getTourById(this.props.id).then((res) => {
-            this.setState({ tour: res.data });
+        TourService.getTourByRating(this.state.top_rated).then((res) => {
+            this.setState({ tours: res.data });
         });
-        
-
-
-
     }
+
 
     render() {
         return (
             <div>
-                <div>
-                    
+                <div  className="grids">
 
-                    <Card style={{ width: '340px' ,"height":"375px","padding":"5px","marging":"20px!impotant"}}>
-                        <img src={ this.state.tour.img} style={{"height":"200px","padding":"5px"}} alt=""/>
-                        <Card.Body>
-                            <Card.Title>{ this.state.tour.package_name }</Card.Title>
-                            <Card.Text>
-                            { this.state.tour.package_desc }
-                            </Card.Text>
-                            
-                        </Card.Body>
-                        <Card.Footer style={{"height":"100px"}}>
-                            <Button variant="primary" style={{ width: '300px' }} onClick={() => this.book(this.state.tour.tour_id)} >
-                                    Book Now</Button>
-                        </Card.Footer>
-                    </Card>
+                    {
+                        this.state.tours.map(
+                            tour =>
+                                <Card className="cardTours">
+                                    <Card.Img variant="top" src={tour.img} />
+                                    <Card.Body>
+                                        <Card.Title>{tour.package_name}</Card.Title>
+                                        <Card.Text>{tour.package_desc}
+                                        </Card.Text>
+
+
+
+                                        <Link to={{
+                                            pathname: "/iternary/",
+                                            state: tour.tour_id
+                                        }}>
+                                            <Button variant="primary"  >
+                                                Show Tour</Button>
+                                        </Link>
+                                    </Card.Body>
+                                </Card>
+                        )
+                    }
 
 
 

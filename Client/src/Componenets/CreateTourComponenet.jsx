@@ -46,14 +46,20 @@ class CreateTourComponenet extends Component {
     saveTour = (e) => {
         e.preventDefault();
         //get data from properties 
-        let tour = { tour_id: this.state.tour_id, package_name: this.state.package_name, tour_location: this.state.tour_location };
-        console.log('tour => ' + JSON.stringify(tour));
+
+
+        let tour = {
+            tour_id: this.state.tour_id,
+            package_name: this.state.package_name,
+            tour_location: this.state.tour_location
+        };
+        let tour1=JSON.stringify(tour)
+        console.log('tour => ' + JSON.stringify(tour1));
+
 
 
         //call to rest api and redirect to tours page
-        TourService.createTour(tour).then(res => {
-            this.props.history.push('/tours');
-        });
+        TourService.createTour(tour1).then(res => { this.props.history.push("/")} )
 
     }
 

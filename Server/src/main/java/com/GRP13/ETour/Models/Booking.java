@@ -18,7 +18,10 @@ public class Booking {
 	@Column(name="booking_id")
 	private int booking_id;
 	private String cost;
+	private int no_of_passenger;
 	
+
+
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private Login login;
@@ -36,12 +39,12 @@ public class Booking {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Booking(int booking_id, String cost, Login login, Tours tour, List<Passenger> passengers) {
+	public Booking(int booking_id, String cost, Login login, Tours tour, List<Passenger> passengers, int no_of_passenger) {
 		super();
 		this.booking_id = booking_id;
 		this.cost = cost;
 		this.login = login;
-	
+		this.no_of_passenger = no_of_passenger;
 		this.passengers = passengers;
 	}
 
@@ -80,7 +83,13 @@ public class Booking {
 	}
 	
 	
-	
+	public int getNo_of_passenger() {
+		return no_of_passenger;
+	}
+
+	public void setNo_of_passenger(int no_of_passenger) {
+		this.no_of_passenger = no_of_passenger;
+	}
 	
 	
 	

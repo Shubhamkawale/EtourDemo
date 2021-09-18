@@ -61,4 +61,23 @@ public class TourController {
 		return tourserv.getTourByType(type);
 	}
 	
+	//get tour by rating
+	@GetMapping(value="Tour/rating/{top_rated}")
+	public List<Tours> getTourByRating(@PathVariable String top_rated){
+		return tourserv.getTourByRating(top_rated);
+	}
+	
+	//to return tour by date
+		@GetMapping(value="Tour/Date/{startdate}/{enddate}")
+		public List<Tours> getToursByDate(@PathVariable String startdate, @PathVariable String enddate){
+			return tourserv.getTourByDate(startdate, enddate);
+			
+		}
+		
+		//to return tour by span
+		@GetMapping(value="Tour/Span/{span}")
+		public List<Tours> getTourBySpan(@PathVariable int span){
+			return tourserv.getTourBySpan(span);
+		}
+	
 }

@@ -9,7 +9,11 @@ class TourService {
     }
 
     createTour(tour) {
-        return axios.post(TOUR_URL + "/add"+ tour);
+        return axios.post(TOUR_URL + "/add", tour);
+    }
+
+    addPassenger(passenger) {
+        return axios.post(TOUR_URL+"/Passenger/add",passenger)
     }
 
     getTourById(id) {
@@ -19,6 +23,26 @@ class TourService {
     getTourByType(type) {
         return axios.get(TOUR_URL+"/type/"+type);
     }
+
+    getTourByRating(top_rated) {
+        return axios.get(TOUR_URL+"/rating/"+top_rated);
+    }
+
+    getTourByDate(startdate,enddate) {
+        return axios.get(TOUR_URL+"/Date/"+startdate+"/"+enddate);
+    }
+
+    getTourBySpan(span) {
+        return axios.get(TOUR_URL+"/Span/"+span);
+    }
+
+    getIternaryById(id){
+        return axios.get(TOUR_URL+"/Iternary/"+id);
+    }
+
 }
+
+
+
 
 export default new TourService()
