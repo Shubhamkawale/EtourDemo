@@ -10,13 +10,18 @@ export default class BookingForm extends Component {
         super(props);
 
         this.state = {
+            id: this.props.location.state,
+           
             pid: this.props.match.params.pid,
             pname: '',
             email: '',
             phoneno: '',
             age: '',
             address: '',
-            uid:''
+            uid: '',
+            tour: {},
+            no_of_passenger:''
+            
         }
 
         this.savePassenger = this.savePassenger.bind(this);
@@ -26,11 +31,25 @@ export default class BookingForm extends Component {
         this.changeAge = this.changeAge.bind(this);
         this.changeAddress = this.changeAddress.bind(this);
         this.changeUid = this.changeUid.bind(this);
+        this.changeNoOfPassenger = this.changeNoOfPassenger.bind(this);
 
         
         
     }
+
+    componentDidMount() {
+        TourService.getTourById(this.state.id).then((res) => {
+            this.setState({ tour: res.data })
+        })
+        
+    }
     
+    
+
+    changeNoOfPassenger = (event) => {
+        this.setState({ no_of_passenger: event.target.value });
+        this.bookTour()
+    }
     changepName= (event) => {
         this.setState({pname: event.target.value});
     }
@@ -60,6 +79,17 @@ export default class BookingForm extends Component {
         });
 
     
+    }
+
+    bookTour = (e) => {
+        let book = {user_id:this.state.user_id, tour_id :this.state.tour_id, no_of_passenger: this.state.no_of_passenger, cost:this.state.package_cost}
+        
+        console.log('book => ' + JSON.stringify(book));
+
+        TourService.bookTour(book).then(res => {
+            this.props.history.push('/invoice');
+        })
+
     }
 
     createBill = (e) => {
@@ -106,12 +136,12 @@ export default class BookingForm extends Component {
                                         <div className="form-floating">
                                             <tr>
                                                 <td className=" form-floating col-3" >
-                                                    <input type="text" name="package_Name" class="form-control" aria-label="package_Name" disabled />
+                                                    <input type="text" name="package_Name" class="form-control" aria-label="package_Name" value={this.state.tour.package_name} disabled />
                                                     <label htmlFor="package_Name">Package Name</label>
 
                                                 </td>
                                                 <td className="form-floating col-3" >
-                                                    <input type="text" name="package_Cost" class="form-control" aria-label="package_Cost" disabled onKeyUp="" />
+                                                    <input type="text" name="package_Cost" class="form-control" aria-label="package_Cost" disabled value={this.state.tour.tour_location} />
                                                     <label htmlFor="package_Cost">Package Location</label>
                                                 </td>
 
@@ -121,15 +151,15 @@ export default class BookingForm extends Component {
                                         <div>
                                             <tr>
                                                 <td className="form-floating col-2" >
-                                                    <input type="text" name="package_Duration" class="form-control" aria-label="package_Duration" disabled />
+                                                    <input type="text" name="package_Duration" class="form-control" aria-label="package_Duration" value={this.state.tour.tour_span} disabled />
                                                     <label htmlFor="package_Duration">Package Duration</label>
                                                 </td>
                                                 <td className="form-floating col-2" >
-                                                    <input type="text" name="package_Cost" class="form-control" aria-label="package_Cost" disabled />
+                                                    <input type="text" name="package_Cost" class="form-control" aria-label="package_Cost" value={this.state.tour.package_cost} disabled />
                                                     <label htmlFor="package_Cost">Package Cost</label>
                                                 </td>
                                                 <td className=" form-floating col-2" >
-                                                    <input type="text" name="no_of_passenger" class="form-control" aria-label="no_of_passenger" required />
+                                                    <input type="number" name="no_of_passenger" class="form-control" aria-label="no_of_passenger" required value={this.state.no_of_passenger}  onChange={this.changeNoOfPassenger} />
                                                     <label htmlFor="no_of_passenger">Number of passenger</label>
                                                     <ErrorMessage name="no_of_passenger"></ErrorMessage>
                                                 </td>

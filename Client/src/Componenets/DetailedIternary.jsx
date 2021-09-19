@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
 import TourService from '../Services/TourService'
-import {Card,Button} from "react-bootstrap"
+import { Card, Button } from "react-bootstrap"
+import { Link } from 'react-router-dom'
 
 export default class DetailedIternary extends Component {
     constructor(props) {
         super(props)
-    console.log("props",this.props.location.state)
+        console.log("props", this.props.location.state)
         this.state = {
-            id:this.props.location.state,
-             tour:{},
-             iternary:{}
+            id: this.props.location.state,
+            tour: {},
+            iternary: {},
+            
         }
     }
-    
-   componentDidMount(){
-    TourService.getTourById(this.state.id).then((res)=>{
-        this.setState({tour: res.data})
-    })
-    TourService.getIternaryById(this.state.id).then((res)=>{
-        this.setState({iternary: res.data})
-    })
-   }
+
+    componentDidMount() {
+        TourService.getTourById(this.state.id).then((res) => {
+            this.setState({ tour: res.data })
+        })
+        TourService.getIternaryById(this.state.id).then((res) => {
+            this.setState({ iternary: res.data })
+        })
+    }
 
     render() {
         console.log(this.state.iternary)
@@ -29,23 +31,29 @@ export default class DetailedIternary extends Component {
                 <div>
 
 
-                    <Card style={{ width: '340px', "height": "350px", "padding": "5px", "marging-left": "50px" }} history={this.props.history}>
-                        <Card.img src={this.state.tour.img} style={{ "height": "200px", "padding": "5px" }} />
+                    <Card history={this.props.history}>
+                        <Card.Img src={this.state.tour.img} />
                         <Card.Body>
-                            { /*table tour*/ }
+                            { /*table tour*/}
                             <Card.Title>{this.state.tour.package_name}</Card.Title>
                             <Card.Text>
-                            { /*table iternary*/ }
+                                { /*table iternary*/}
                                 {this.state.iternary.day1}
                             </Card.Text>
                         </Card.Body>
                         <Card.Footer>
-                            
-                                <Button variant="primary" style={{ width: '300px' }} >
-                                    Show Tour</Button>
-                            
 
+                            <Link to={{
+                                pathname: "/booking/",
+                                state: this.state.tour.tour_id
+                            }}>
+
+                                <Button variant="primary" >
+                                    Book Tour</Button>
+                            </Link>
                         </Card.Footer>
+
+
                     </Card>
 
 

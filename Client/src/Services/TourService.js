@@ -40,6 +40,10 @@ class TourService {
         return axios.get(TOUR_URL+"/Iternary/"+id);
     }
 
+    bookTour(book) {
+        return axios.post(TOUR_URL+"/Booking/add",book)
+    }
+
 }
 
 

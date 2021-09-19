@@ -25,6 +25,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
   
+  
 }
 
 .App-link {
@@ -48,6 +49,7 @@
 footer{
  
   padding: 30px;
+  background-color:lightblue;
 }
 
 body{
@@ -55,7 +57,7 @@ body{
 }
 
 .grids{
-  min-height: 100%;
+  min-height: auto;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -67,10 +69,16 @@ body{
 .cardTours
 {
    width: 18rem;
+   height:auto;
   margin:10px;
   box-shadow: 0px 12px 18px -6px rgba(0,0,0,0.3);
   border-radius: 10px 10px;
  
+ }
+
+ .headings{
+    margin-top: 10px;
+    text-shadow: 2px 2px #DCDCDC;
  }
 
  .formSign{
@@ -92,3 +100,10 @@ img{
   padding:10px;
 
 }
+
+switch{
+  background-color: linear-gradient(#ADD8E6,#ffffff);
+}
+
+
+

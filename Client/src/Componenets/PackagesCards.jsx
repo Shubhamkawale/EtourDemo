@@ -27,8 +27,8 @@ export default class PackagesCard extends Component {
     render() {
         return (
             <div >
-                 <h2 style={{ margin: "10px"}}>See Our Best Popular Destinations</h2>
-                <div  className="grids">
+                 <h2 className="headings">See Our Best Popular Destinations</h2>
+                 <div className="grids">
 
                     {
                         this.state.tours.map(
@@ -40,16 +40,17 @@ export default class PackagesCard extends Component {
                                         <Card.Text>{tour.package_desc}
                                         </Card.Text>
 
-
-
-                                        <Link to={{
+                                    </Card.Body>
+                                    <Card.Footer>
+                                    <Link to={{
                                             pathname: "/iternary/",
                                             state: tour.tour_id
                                         }}>
-                                            <Button variant="primary"  >
-                                                Show Tour</Button>
+
+                                            <Button variant="primary" >
+                                                Book Tour</Button>
                                         </Link>
-                                    </Card.Body>
+                                    </Card.Footer>
                                 </Card>
                         )
                     }

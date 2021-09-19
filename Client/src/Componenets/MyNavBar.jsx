@@ -23,7 +23,8 @@ export default class MyNavbar extends Component {
                                         <NavDropdown.Item href="/view-Tour/D" >Domestic</NavDropdown.Item>
                                     </NavDropdown>
 
-                                    <Nav.Link href="#pricing">About Us</Nav.Link>
+                                    <Nav.Link href="/aboutUs">About Us</Nav.Link>
+                                    <Nav.Link href="/contactUs">Contact Us</Nav.Link>
                                 </Router>
                             </Nav>
                             <Nav>

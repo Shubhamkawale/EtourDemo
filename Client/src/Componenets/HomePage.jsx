@@ -9,12 +9,13 @@ class HomePage extends Component {
 
     render() {
         return (
-            <div>               
+            <div>
                 <MyCaraousal />
-                    <div className="grids">
-                        <PackagesCard/>
-                    </div>
-                <TourType/>
+                <div className="grids">
+                <PackagesCard />
+                </div>
+                
+                <TourType />
             </div>
         );
     }

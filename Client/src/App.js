@@ -9,9 +9,10 @@ import DetailedTourInternational from './Componenets/DetailedTourInternational';
 import DetailedTourDomestic from './Componenets/DetailedTourDomestic'
 import BookingForm from './Componenets/BookingForm';
 import Tour from './Componenets/DetailedIternary';
-import CreateTourComponenet from './Componenets/CreateTourComponenet';
 import DetailedIternary from './Componenets/DetailedIternary';
-import PackagesCard from './Componenets/PackagesCards';
+import AboutUs from './Componenets/AboutUs';
+import ContactUs from './Componenets/ContactUs';
+import Invoice from './Componenets/Invoice';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
     <Router>
       <div className="App">
         <MyNavbar />
-        <Switch>
+        <Switch >
           
 
 
@@ -31,6 +32,9 @@ function App() {
           <Route exact path="/book-Tour/:id" component={BookingForm}></Route>
           <Route exact path="/iternary/" component={DetailedIternary}></Route>
           <Route exact path="/booking" component={BookingForm}></Route>
+          <Route exact path="/aboutUs" component={AboutUs}></Route>
+          <Route exact path="/contactUs" component={ContactUs}></Route>
+          <Route exact path="/invoice" component={Invoice}></Route>
 
         </Switch>
 

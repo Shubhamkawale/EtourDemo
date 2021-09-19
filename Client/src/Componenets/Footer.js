@@ -6,22 +6,23 @@ export default function Footer() {
     alert("Thank You")
   }
   return (
-    <div>
+    <div >
 
       <footer position="fixed">
         <div className="row">
-          <div className="col-2">
+          <div className="col-4">
            
             <ul className="nav flex-column">
               <li className="nav-item mb-2"><a href="/" className="nav-link p-0 text-muted">Home</a></li>
               <li className="nav-item mb-2"><a href="/view-Tour/I" className="nav-link p-0 text-muted">International</a></li>
               <li className="nav-item mb-2"><a href="/view-Tour/D" className="nav-link p-0 text-muted">Domestic</a></li>
-              <li className="nav-item mb-2"><a href="/" className="nav-link p-0 text-muted">About</a></li>
+              <li className="nav-item mb-2"><a href="/aboutUs" className="nav-link p-0 text-muted">About Us</a></li>
+              <li className="nav-item mb-2"><a href="/contactUs" className="nav-link p-0 text-muted">Contact Us</a></li>
             </ul>
           </div>
 
           
-          <div className="col-6 offset-1">
+          <div className="col-5 offset-1">
             <form>
               <h5>Subscribe to our newsletter</h5>
               <p>Get Offers on Trips from us.</p>

@@ -33,43 +33,39 @@ class DetailedTourInternational extends Component {
 
     render() {
         return (
-            <div>
-                <h1>International tours</h1>
+            <div >
+                <h1 className="headings">International tours</h1>
                 <div className="grids">
+                    <div className="grids">
+                        {
+                            this.state.tours.map(
+                                tour =>
 
+                                    <Card className="cardTours">
+                                        <Card.Img variant="top" src={tour.img} />
+                                        <Card.Body>
+                                            <Card.Title>{tour.package_name}</Card.Title>
+                                            <Card.Text>
+                                                {tour.package_desc}
+                                            </Card.Text>
 
+                                        </Card.Body>
+                                        <Card.Footer>
+                                            <Link to={{
+                                                pathname: "/iternary/",
+                                                state: tour.tour_id
+                                            }}>
 
+                                                <Button variant="primary" >
+                                                    Book Tour</Button>
+                                            </Link>
+                                        </Card.Footer>
+                                    </Card>
 
+                            )
+                        }
 
-                    {
-                        this.state.tours.map(
-                            tour =>
-
-                                <Card className="cardTours">
-                                    <Card.Img variant="top" src={tour.img} />
-                                    <Card.Body>
-                                        <Card.Title>{tour.package_name}</Card.Title>
-                                        <Card.Text>
-                                            {tour.package_desc}
-                                        </Card.Text>
-                                        <Link to={{
-                                            pathname: "/iternary/",
-                                            state: this.state.tour.tour_id
-                                        }}>
-                                            <Button variant="primary" style={{ width: '300px' }} >
-                                                Show Tour</Button>
-                                        </Link>
-                                    </Card.Body>
-                                </Card>
-
-
-
-
-
-                        )
-                    }
-
-
+                    </div>
                 </div>
 
             </div>
