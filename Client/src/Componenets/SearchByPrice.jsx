@@ -38,7 +38,7 @@ export default class SearchByPrice extends Component {
                                             {tour.package_desc}
                                         </Card.Text>
                                         <Card.Text>
-                                            {tour.package_cost}
+                                            Tour Cost - {tour.package_cost} Rs.
                                         </Card.Text>
                                        
                                     </Card.Body>

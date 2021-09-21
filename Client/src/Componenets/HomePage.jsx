@@ -14,9 +14,9 @@ class HomePage extends Component {
             <div>
                 <MyCaraousal />
                 <SearchSimple />
-                <div className="grids">
+                
                 <TourPackages/>
-                </div>
+                
 
                 <div className="grids">
                 <PackagesCard />

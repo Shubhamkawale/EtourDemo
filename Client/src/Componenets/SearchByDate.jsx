@@ -37,11 +37,11 @@ export default class SearchByDate extends Component {
                                         <Card.Text>
                                             {tour.package_desc}
                                         </Card.Text>
-                                        <Card.Text>
+                                        <Card.Text>Start date -
                                             {tour.start_date}
                                         </Card.Text>
                                         <Card.Text>
-                                            {tour.end_date}
+                                        End date - {tour.end_date}
                                         </Card.Text>
                                         
                                     </Card.Body>

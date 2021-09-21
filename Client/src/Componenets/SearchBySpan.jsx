@@ -33,7 +33,7 @@ export default class SearchBySpan extends Component {
                                             {tour.package_desc}
                                         </Card.Text>
                                         <Card.Text>
-                                            {tour.tour_span}
+                                           Tour Duration - {tour.tour_span} days.
                                         </Card.Text>
                                         
                                     </Card.Body>

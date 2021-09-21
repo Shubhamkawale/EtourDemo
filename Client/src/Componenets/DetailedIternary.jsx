@@ -27,21 +27,25 @@ export default class DetailedIternary extends Component {
 
     render() {
         console.log(this.state.iternary)
-        let iten5, iten6, iten7, iten8;
+        let iten4, iten5, iten6, iten7, iten8;
+        if (this.state.iternary.day4 != null) {
+            iten4 = <tr className="subheadings"><td>DAY-4 </td><td> {this.state.iternary.day4}</td></tr>
+
+        }
         if (this.state.iternary.day5 != null) {
-            iten5 = <tr className="subheadings">DAY-5  {this.state.iternary.day5}</tr>
+            iten5 = <tr className="subheadings"><td>DAY-5 </td><td> {this.state.iternary.day5}</td></tr>
 
         }
         if (this.state.iternary.day6 != null) {
-            iten6 = <tr className="subheadings">DAY-6  {this.state.iternary.day6}</tr>
+            iten6 = <tr className="subheadings"><td>DAY-6 </td><td> {this.state.iternary.day6}</td></tr>
 
         }
         if (this.state.iternary.day7 != null) {
-            iten7 = <tr className="subheadings">DAY-7  {this.state.iternary.day7}</tr>
+            iten7 = <tr className="subheadings"><td>DAY-7 </td><td> {this.state.iternary.day7}</td></tr>
 
         }
         if (this.state.iternary.day8 != null) {
-            iten8 = <tr className="subheadings">DAY-8  {this.state.iternary.day8}</tr>
+            iten8 = <tr className="subheadings"><td>DAY-8 </td><td> {this.state.iternary.day8}</td></tr>
 
         }
         return (
@@ -51,17 +55,23 @@ export default class DetailedIternary extends Component {
 
 
                     <Card history={this.props.history}>
-                        <Card.Img src={this.state.tour.img} />
+                    <h1>{this.state.tour.package_name}</h1>
+                        <Card.Img src={this.state.tour.img} style={{"height":"400px","width":"800px","margin":"auto"}} />
+                        
                         <Card.Body>
-                            <h1>Tour Plan</h1>
-                            <Table striped bordered hover responsive="lg" >
+                            <p><h3>Tour Discripton</h3>
+                                <h5>{this.state.tour.package_desc}</h5>
+
+                            </p>
+                            <h3>Tour Iternary</h3>
+                            <Table striped bordered hover responsive="lg" style={{"margin":"auto","width":"auto"}}  >
 
                                 <th>
 
-                                    <tr className="subheadings">DAY-1  {this.state.iternary.day1}</tr>
-                                    <tr className="headings">DAY-2  {this.state.iternary.day2}</tr>
-                                    <tr className="headings">DAY-3  {this.state.iternary.day3}</tr>
-                                    <tr className="headings">DAY-4  {this.state.iternary.day4}</tr>
+                                    <tr className="subheadings"  align="center"><td style={{"width":"70px"}}>DAY-1</td><td> {this.state.iternary.day1}</td></tr>
+                                    <tr className="headings"><td>DAY-2 </td><td>     {this.state.iternary.day2}</td></tr>
+                                    <tr className="headings"><td>DAY-3 </td><td> {this.state.iternary.day3}</td></tr>
+                                    {iten4}
                                     {iten5}
                                     {iten6}
                                     {iten7}

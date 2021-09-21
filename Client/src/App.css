@@ -61,7 +61,7 @@ body{
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  margin: 30px 90px;
+  margin: 5px 105px;
 }
 
 
@@ -147,7 +147,7 @@ switch{
 }
 
 #searchBarSearchOn {
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 .searchBarInput {
@@ -157,7 +157,7 @@ switch{
 }
 
 input.searchBarInput.w-50.form-control.form-control-sm {
-  border: 2px solid;
+  border: 1px solid;
   border-radius: 12px;
   border-color: steelblue;
 }
@@ -168,13 +168,15 @@ button#durationButton {
   border: 2px solid steelblue;
 }
 
+
+
 div#searchBar {
-  margin-top: 48px;
-  border-radius: 200px;
-  width: 1100px;
-
+  margin-top: 30px;
+  border-radius: 180px;
+  width: 1000px;
+  height: 180px;
+  padding-top: 10px;
 }
-
 button.searchBarButton.btn.btn-info {
   border-radius: 12px;
   border: 2px solid steelblue;
@@ -184,13 +186,12 @@ table.table.searchBarTable.table-borderless {
   margin-left: auto;
   margin-right: auto;
   width: auto;
-  margin-top: 40px;
 }
 
 table.table.table-secondary {
   margin-left: auto;
   margin-right: auto;
-  width: 1100px;
+  width: 1000px;
 }
 
 .print {
@@ -225,4 +226,11 @@ table.table.table-secondary {
 p.btn.btn-light.text-capitalize.border-0.w-100 {
   text-align: start;
   background-color: #f3f9ff;
+}
+
+
+.disabled-link{
+  cursor: default;      
+  text-decoration: none;
+  color: grey;
 }

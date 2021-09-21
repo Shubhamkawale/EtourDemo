@@ -27,7 +27,7 @@ export default class PackagesCard extends Component {
     render() {
         return (
             <div >
-                 <h2 className="headings">See Our Best Popular Destinations</h2>
+                 <h2 className="headings">Most Popular Destinations</h2>
                  <div className="grids">
 
                     {

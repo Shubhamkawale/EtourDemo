@@ -62,8 +62,6 @@ export default class SearchSimple extends Component {
                 
                 <div class="container border border-dark bg-light text-dark" id="searchBar">
                     
-                    
-                    <div>
                         <table class="table searchBarTable table-borderless">
                             <thead>
                                 <tr>
@@ -171,7 +169,7 @@ export default class SearchSimple extends Component {
                     
                     <br />
                 </div>
-            </div>
+            
         );
     }
 }
