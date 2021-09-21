@@ -45,15 +45,6 @@ public interface ToursRepository extends JpaRepository<Tours,Integer>{
 	@Transactional
 	@Query(value="SELECT * from Tours t WHERE t.package_cost>= :first AND t.package_cost<= :second", nativeQuery = true)
 	public List<Tours> getTourByCost(@Param("first") int first, @Param("second") int second);
-	
-	
-	@Modifying(clearAutomatically = true)
-	@Transactional
-	@Query("SELECT t FROM Tours t WHERE t.package_type = :packagetype ")
-	public List<Tours> getToursByPackageType(@Param("packagetype") String type);
-	
-	
 }
-
 
 

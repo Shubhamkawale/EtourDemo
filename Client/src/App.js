@@ -17,6 +17,7 @@ import SearchByDate from './Componenets/SearchByDate';
 import SearchByPrice from './Componenets/SearchByPrice';
 import SearchBySpan from './Componenets/SearchBySpan';
 import Genre from './Componenets/Genre'
+import TourPackages from './Componenets/TourPackages'
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Route exact path="/price" component={SearchByPrice}></Route>
           <Route exact path="/span" component={SearchBySpan}></Route>
           <Route exact path="/Genre" component={Genre}></Route>
+          <Route exact path="/tourpackages" component={TourPackages}></Route>
 
         </Switch>
 

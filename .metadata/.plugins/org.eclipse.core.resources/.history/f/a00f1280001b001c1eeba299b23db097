@@ -66,8 +66,4 @@ public class TourService {
 		public List<Tours> getTourByCost(int first, int second){
 			return tourRepository.getTourByCost(first, second);
 		}
-		
-		public List<Tours> getTourByPackageType(String packagetype){
-			return tourRepository.getToursByPackageType(packagetype);
-		}
 }

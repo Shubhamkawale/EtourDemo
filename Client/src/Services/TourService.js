@@ -50,6 +50,10 @@ class TourService {
         return axios.post(TOUR_URL+"/Login/add",user);
     }
 
+    getTourByPackageType(packagetype) {
+        return axios.get(TOUR_URL+"/packagetype/"+packagetype);
+    }
+
 }
 
 

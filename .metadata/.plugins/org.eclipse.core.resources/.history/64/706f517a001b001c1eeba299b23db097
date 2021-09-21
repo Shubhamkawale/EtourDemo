@@ -86,9 +86,4 @@ public class TourController {
 			return tourserv.getTourByCost(first, second);
 			
 		}
-		
-		@GetMapping(value="Tour/packagetype/{packagetype}")
-		public List<Tours> getTourByPackageType(@PathVariable String packagetype){
-			return tourserv.getTourByPackageType(packagetype);
-		}
 }
