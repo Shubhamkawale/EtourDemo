@@ -48,7 +48,7 @@ export default class PackagesCard extends Component {
                                         }}>
 
                                             <Button variant="primary" >
-                                                Book Tour</Button>
+                                            View Tour</Button>
                                         </Link>
                                     </Card.Footer>
                                 </Card>

@@ -6,8 +6,24 @@ import Login from './Login';
 
 export default class MyNavbar extends Component {
 
+    constructor(props) {
+        super(props)
+        const token = localStorage.getItem("token")
+
+        let loggedin = true;
+        if (token == null) {
+            loggedin = false;
+        }
+        this.state = {
+            loggedin
+        }
+    }
+
+
 
     render() {
+
+
         return (
             <div>
                 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -22,9 +38,10 @@ export default class MyNavbar extends Component {
                                         <NavDropdown.Item href="/view-Tour/I" >International</NavDropdown.Item>
                                         <NavDropdown.Item href="/view-Tour/D" >Domestic</NavDropdown.Item>
                                     </NavDropdown>
-
+                                    <Nav.Link href="/tourpackages">Tour Packages</Nav.Link>
                                     <Nav.Link href="/aboutUs">About Us</Nav.Link>
                                     <Nav.Link href="/contactUs">Contact Us</Nav.Link>
+
                                 </Router>
                             </Nav>
                             <Nav>
@@ -41,4 +58,6 @@ export default class MyNavbar extends Component {
         )
     }
 }
+
+
 

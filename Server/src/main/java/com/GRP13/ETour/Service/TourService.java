@@ -61,4 +61,9 @@ public class TourService {
 		public List<Tours> getTourBySpan(int span){
 			return tourRepository.getTourBySpan(span);
 		}	
+		
+		//to get tours by cost
+		public List<Tours> getTourByCost(int first, int second){
+			return tourRepository.getTourByCost(first, second);
+		}
 }

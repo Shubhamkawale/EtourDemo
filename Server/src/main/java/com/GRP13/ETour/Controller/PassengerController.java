@@ -12,7 +12,6 @@ import com.GRP13.ETour.Models.Passenger;
 import com.GRP13.ETour.Service.PassengerService;
 
 @CrossOrigin(origins = "http://localhost:3000" )
-
 @RestController
 public class PassengerController {
 	

@@ -12,9 +12,14 @@ class CreateTourComponenet extends Component {
             tour_id: "",
             package_name: "",
             tour_location: "",
-            package_cost: ""
+            package_cost: "",
+           
 
         }
+        
+
+       
+
 
         //binding evethandler with constructor
         this.changeTourIdHandler = this.changeTourIdHandler.bind(this);
@@ -53,8 +58,7 @@ class CreateTourComponenet extends Component {
             package_name: this.state.package_name,
             tour_location: this.state.tour_location
         };
-        let tour1=JSON.stringify(tour)
-        console.log('tour => ' + JSON.stringify(tour1));
+        console.log('tour => ' + JSON.stringify(tour));
 
 
 
@@ -68,6 +72,7 @@ class CreateTourComponenet extends Component {
     }
 
     render() {
+        
         return (
             <div>
                 <div className="container">

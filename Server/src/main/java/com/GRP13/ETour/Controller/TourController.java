@@ -80,4 +80,10 @@ public class TourController {
 			return tourserv.getTourBySpan(span);
 		}
 	
+		//to get tour by cost
+		@GetMapping(value="Tour/Cost/{first}/{second}")
+		public List<Tours> getTourByCost(@PathVariable int first, @PathVariable int second){
+			return tourserv.getTourByCost(first, second);
+			
+		}
 }

@@ -13,8 +13,8 @@ public class LoginService {
 	@Autowired
 	private LoginRepository loginRepo;
 	
-	public void addLogin(Login login) {
-		loginRepo.save(login);
+	public void addLogin(Login user) {
+		loginRepo.save(user);
 		
 	}
 	

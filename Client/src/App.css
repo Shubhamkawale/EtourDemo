@@ -82,7 +82,7 @@ body{
  }
 
  .formSign{
-    padding:30px;
+    padding:10px;
     align-items: center;
  }
 
@@ -106,4 +106,123 @@ switch{
 }
 
 
+@keyframes customEnterOverlayAnimation {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes customLeaveOverlayAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
 
+@keyframes customEnterModalAnimation {
+  0% {
+    transform: scale(0.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes customLeaveModalAnimation {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.2);
+  }
+}
+
+.customModal {
+  background: #b2dbbf;
+  width: 500px;
+  
+}
+
+#searchBarSearchOn {
+  margin-top: 10px;
+}
+
+.searchBarInput {
+  float: left;
+  border-radius: 12px;
+  border-color: steelblue;
+}
+
+input.searchBarInput.w-50.form-control.form-control-sm {
+  border: 2px solid;
+  border-radius: 12px;
+  border-color: steelblue;
+}
+
+button#durationButton {
+  margin-left: 205px;
+  border-radius: 12px;
+  border: 2px solid steelblue;
+}
+
+div#searchBar {
+  margin-top: 48px;
+  border-radius: 200px;
+  width: 1100px;
+
+}
+
+button.searchBarButton.btn.btn-info {
+  border-radius: 12px;
+  border: 2px solid steelblue;
+}
+
+table.table.searchBarTable.table-borderless {
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  margin-top: 40px;
+}
+
+table.table.table-secondary {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1100px;
+}
+
+.print {
+  margin-top: -16px;
+}
+
+.row.InvoiceInfo {
+  margin-top: 50px;
+}
+
+.row.InvoiceTable {
+  margin-top: 50px;
+  margin-bottom: -16px;
+}
+
+.col.TotalAmount.w-50 {
+  margin-left: 140px;
+  margin-right: 4px;
+}
+
+
+.card {
+  background-color: #f3f9ff;
+  border: none;
+  border-radius: 0;
+}
+
+.col.companyLOGO {
+  margin-top: 15px;
+}
+
+p.btn.btn-light.text-capitalize.border-0.w-100 {
+  text-align: start;
+  background-color: #f3f9ff;
+}

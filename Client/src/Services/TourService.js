@@ -28,20 +28,26 @@ class TourService {
         return axios.get(TOUR_URL+"/rating/"+top_rated);
     }
 
-    getTourByDate(startdate,enddate) {
-        return axios.get(TOUR_URL+"/Date/"+startdate+"/"+enddate);
-    }
-
-    getTourBySpan(span) {
-        return axios.get(TOUR_URL+"/Span/"+span);
-    }
-
     getIternaryById(id){
         return axios.get(TOUR_URL+"/Iternary/"+id);
     }
 
     bookTour(book) {
         return axios.post(TOUR_URL+"/Booking/add",book)
+    }
+
+    getTourByDate(first, second){
+        return axios.get(TOUR_URL+"/Date/"+first+"/"+second);
+    }
+    getTourByCost(first, second){
+        return axios.get(TOUR_URL+"/Cost/"+first+"/"+second);
+    }
+    getTourBySpan(span){
+        return axios.get(TOUR_URL+"/Span/"+span);
+    }
+
+    addLogin(user) {
+        return axios.post(TOUR_URL+"/Login/add",user);
     }
 
 }

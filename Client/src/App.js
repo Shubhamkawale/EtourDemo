@@ -13,6 +13,10 @@ import DetailedIternary from './Componenets/DetailedIternary';
 import AboutUs from './Componenets/AboutUs';
 import ContactUs from './Componenets/ContactUs';
 import Invoice from './Componenets/Invoice';
+import SearchByDate from './Componenets/SearchByDate';
+import SearchByPrice from './Componenets/SearchByPrice';
+import SearchBySpan from './Componenets/SearchBySpan';
+import Genre from './Componenets/Genre'
 
 
 function App() {
@@ -22,8 +26,6 @@ function App() {
       <div className="App">
         <MyNavbar />
         <Switch >
-          
-
 
           <Route exact path="/" component={HomePage}></Route>
           <Route exact path="/view-Tour/I" component={DetailedTourInternational}></Route>
@@ -35,13 +37,16 @@ function App() {
           <Route exact path="/aboutUs" component={AboutUs}></Route>
           <Route exact path="/contactUs" component={ContactUs}></Route>
           <Route exact path="/invoice" component={Invoice}></Route>
+          <Route exact path="/date" component={SearchByDate}></Route>
+          <Route exact path="/price" component={SearchByPrice}></Route>
+          <Route exact path="/span" component={SearchBySpan}></Route>
+          <Route exact path="/Genre" component={Genre}></Route>
 
         </Switch>
 
       </div>
       <Footer />
     </Router>
-
   );
 }
 

@@ -21,13 +21,13 @@ public class LoginController {
 	@Autowired
 	private LoginService loginserve;
 	
-	@PostMapping(value="Login/add")
-	public void addLogin(@RequestBody Login login)
+	@PostMapping(value="Tour/Login/add")
+	public void addLogin(@RequestBody Login user)
 	{
-		loginserve.addLogin(login);
+		loginserve.addLogin(user);
 	}
 	
-	@GetMapping(value="Login/get/{user_id}")
+	@GetMapping(value="Tour/Login/get/{user_id}")
 	public Login getUserById(@PathVariable int user_id) {
 		return loginserve.getUserById(user_id);
 	}

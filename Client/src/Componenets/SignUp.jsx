@@ -1,108 +1,124 @@
-import React from 'react';
-import { Button, Modal } from 'react-bootstrap'
-import { Formik,Form,Field, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
-
-
-const initialValues = {
-    username: '',
-    email: '',
-    password: ''
-}
-
-const onSubmit = values => {
-    console.log('Form Data',values)
-}
-
-const validationSchema = Yup.object({
-    name: Yup.string().required('Required'),
-    email: Yup.string().email('Invalid Email format').required('Required'),
-    password: Yup.string().required('Required')
-})
+import React, { Component } from 'react'
+import { Modal } from 'react-responsive-modal';
+import 'react-responsive-modal/styles.css';
+import { Button } from 'react-bootstrap'
+import TourService from '../Services/TourService';
 
 
 
-function MyVerticallyCenteredModalSignUp(props) {
+
+class SignUp extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+
+            user_id: '',
+            user_name: "",
+            email_id: "",
+            password: "",
+
+        }
+
+        this.changeName = this.changeName.bind(this);
+        this.changeEmail = this.changeEmail.bind(this);
+        this.changePassword = this.changePassword.bind(this);
+        this.register = this.register.bind(this);
+    }
+    state = {
+        openModal: false
+    }
+
+    changeName = (event) => {
+        this.setState({ user_name: event.target.value });
+    }
+
+    changeEmail = (event) => {
+        this.setState({ email_id: event.target.value });
+    }
+
+    changePassword = (event) => {
+        this.setState({ password: event.target.value });
+    }
+
+    register = (e) => {
+        e.preventDefault();
+        let user = {
+            user_name: this.state.user_name,
+            email: this.state.email_id,
+            password: this.state.password
+        }
+        console.log('user => ' + JSON.stringify(user));
+        TourService.addLogin(user)
+        alert("Registred Successfully!")
+         console.log("aeeresf")
+        this.onCloseModal()
+    }
 
 
+    onClickButton = e => {
+        e.preventDefault()
+        this.setState({ openModal: true })
+    }
 
-  
-
-
-    return (
-        <Modal
-            {...props}
-            size="m"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-
-            <Modal.Body>
-                <Formik initialValues={initialValues} validationSchema={ validationSchema} onSubmit={onSubmit}>
+    onCloseModal = () => {
+        this.setState({ openModal: false })
+    }
 
 
-                    <Form className="formSign" >
+    render() {
 
-                        <h1 className="h3 mb-3 fw-normal"><center >Sign Up Here</center></h1>
+        return (
+            <div >
+                <Button variant="primary" onClick={this.onClickButton}>Sign Up</Button>
+
+                <Modal open={this.state.openModal} onClose={this.onCloseModal}
+
+                    aria-labelledby="contained-modal-title-vcenter"
+                    center
+                    classNames={{
+                        overlayAnimationIn: 'customEnterOverlayAnimation',
+                        overlayAnimationOut: 'customLeaveOverlayAnimation',
+                        modalAnimationIn: 'customEnterModalAnimation',
+                        modalAnimationOut: 'customLeaveModalAnimation',
+                        modal: 'customModal',
+                    }}
+                    animationDuration={300}
+                >
+                    <form className="formSign">
+
+                        <h1 className="h3 fw-normal"><center> Sign In</center></h1>
                         <div className="form-floating">
-                            <Field type="text" className="form-control" placeholder="Username" name="username" />
-                            <label for="floatingInput">Please Enter Username</label>
-                            <ErrorMessage name='name' />
+
+                            <input type="text" class="form-control" name="user_name"  pattern="[a-zA-Z].{8,50}$" value={this.state.user_name} onChange={this.changeName} required/>
+
+                            <label for="floatingInput">User Name</label>
                         </div>
-                        
+                        <div class="form-floating ">
 
-                        <br />
-
-                        <div class="form-floating mb-3">
-                            <Field type="email" className="form-control " name="email" placeholder="name@example.com"  />
-                            <label for="floatingInputValue">Enter Email address</label>
-                            <span id="emailHelp" className="form-text">We'll never share your email with anyone else.</span>
-                            <ErrorMessage name='email' />
+                        <input type="text" class="form-control" name="email_id"  pattern="[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]" value={this.state.email_id} onChange={this.changeEmail} required />
+                            <label for="floatingInput">Email Id</label>
                         </div>
-                        
-
                         <div className="form-floating">
-                            <Field type="password" className="form-control" name="password" placeholder="Password"  />
-                            <label for="floatingPassword">Enter Password Here</label>
-                            <ErrorMessage name='password' />
-                        </div>
-                        
 
-                        <br />
+                            <input type="text" type="password" className="form-control" name="password" pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" onChange={this.changePassword} value={this.state.password} required/>
+
+                            <label for="floatingPassword">Password</label>
+                        </div>
+
                         <div style={{ 'float': 'right' }}>
-                            <Button type="submit" variant="primary" onClick="">Sign Up</Button>
+                            <Button variant="primary" onClick={this.register}>Sign Up</Button>
                             <span>&nbsp;</span>
-                            <Button onClick={props.onHide}>Close</Button>
+                            <Button onClick={this.onCloseModal}>Close</Button>
                         </div>
 
-                    </Form>
+                    </form>
+                </Modal>
 
-
-                </Formik>
-            </Modal.Body>
-
-        </Modal>
-    );
+            </div>
+        );
+    }
 }
-
-function SignUp() {
-    const [modalShow, setModalShow] = React.useState(false);
-
-    return (
-        <>
-            <Button variant="primary" onClick={() => setModalShow(true)}>
-                Sign Up
-            </Button>
-
-            <MyVerticallyCenteredModalSignUp
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-            />
-        </>
-    );
-}
-
-
-
 
 export default SignUp;

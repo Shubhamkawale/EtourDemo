@@ -19,7 +19,7 @@ public class Booking {
 	private int booking_id;
 	private String cost;
 	private int no_of_passenger;
-	
+	private int tid;
 
 
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
@@ -39,14 +39,28 @@ public class Booking {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Booking(int booking_id, String cost, Login login, Tours tour, List<Passenger> passengers, int no_of_passenger) {
+	
+	public Booking(int booking_id, String cost, int no_of_passenger, int tid, Login login, List<Passenger> passengers) {
 		super();
 		this.booking_id = booking_id;
 		this.cost = cost;
-		this.login = login;
 		this.no_of_passenger = no_of_passenger;
+		this.tid = tid;
+		this.login = login;
 		this.passengers = passengers;
 	}
+
+	
+
+	public int getTid() {
+		return tid;
+	}
+
+
+	public void setTid(int tid) {
+		this.tid = tid;
+	}
+
 
 	public int getBooking_id() {
 		return booking_id;
