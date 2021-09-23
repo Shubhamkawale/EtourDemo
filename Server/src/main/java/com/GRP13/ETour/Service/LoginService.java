@@ -1,5 +1,7 @@
 package com.GRP13.ETour.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +24,7 @@ public class LoginService {
 		return loginRepo.findById(user_id).get();
 	}
 	
+	public List<Login> getallUsers(){
+		return loginRepo.findAll();
+	}
 }

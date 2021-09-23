@@ -1,11 +1,14 @@
 package com.GRP13.ETour.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import com.GRP13.ETour.Models.Login;
 import com.GRP13.ETour.Models.Passenger;
+import com.GRP13.ETour.Models.Tours;
 import com.GRP13.ETour.Repository.LoginRepository;
 import com.GRP13.ETour.Repository.PassengerRepository;
 
@@ -20,5 +23,15 @@ public class PassengerService {
 		
 	}
 	
-
+	public List<Passenger> getallPassenger(){
+		return passengerRepo.findAll();
+	}
+	
+	
+	public List<Passenger> getallPassengerById(int sessionId){
+		return passengerRepo.getallPassengerById(sessionId);
+	}
+	
+	
+	
 }

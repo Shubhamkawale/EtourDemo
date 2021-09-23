@@ -54,6 +54,24 @@ class TourService {
         return axios.get(TOUR_URL+"/packagetype/"+packagetype);
     }
 
+    getallUsers(){
+        return axios.get(TOUR_URL+"/Allusers")
+    }
+
+    getUserById(user_id) {
+        return axios.get(TOUR_URL+"/Login/get/"+user_id)
+    }
+    getAllPassenger() {
+        return axios.get(TOUR_URL+"/AllPassengers")
+    }
+    getAllPassengerById(sessionId) {
+        return axios.get(TOUR_URL+"/AllPassengers/"+sessionId)
+    }
+
+    getBookingById(sessionId) {
+        return axios.get(TOUR_URL+"/Booking/id/"+sessionId);
+    }
+
 }
 
 

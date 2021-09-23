@@ -13,20 +13,36 @@ public class Login {
 	private String password;
 	private String user_name;
 	private String email;
+	private int phoneno;
 	
 
-	public Login(int user_id, String password, String user_name,String email) {
+	public Login(int user_id, String password, String user_name,String email, int phoneno) {
 		super();
 		this.user_id = user_id;
 		this.password = password;
 		this.user_name = user_name;
 		this.email=email;
+		this.phoneno = phoneno;
 	}
+	
+	
+	
+	
 	public Login() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	public int getPhoneno() {
+		return phoneno;
+	}
+
+	public void setPhoneno(int phoneno) {
+		this.phoneno = phoneno;
+	}
+
 	public int getUser_id() {
 		return user_id;
 	}

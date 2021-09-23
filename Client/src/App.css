@@ -234,3 +234,46 @@ p.btn.btn-light.text-capitalize.border-0.w-100 {
   text-decoration: none;
   color: grey;
 }
+
+div#TourCard {
+  background-color: aliceblue;
+}
+
+ p#tourdescription {
+  background-color: lightsteelblue;
+  height: 80px;
+  text-shadow: 2px 2px 5px #001dd9a6;
+  margin-top: 20px;
+}
+
+h1#tourHeader {
+  background-color: lightsteelblue;
+  height: 55px;
+  text-shadow: 2px 2px 5px #001dd9a6;
+}
+
+#iternaryHeader {
+  text-shadow: 2px 2px 5px #001dd9a6;
+}
+
+#iternaryTable tr:nth-child(even) {
+  background-color: skyblue;
+}
+
+#iternaryImage {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+table#iternaryTable {
+  border-color: slategrey;
+}
+
+ .table-responsive-lg {
+  background-color: lightsteelblue;
+  display: inline-table;
+  margin-top: 20px
+}
+
+.bookButton:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}

@@ -18,6 +18,9 @@ import SearchByPrice from './Componenets/SearchByPrice';
 import SearchBySpan from './Componenets/SearchBySpan';
 import Genre from './Componenets/Genre'
 import TourPackages from './Componenets/TourPackages'
+import ListToursComponent from './Componenets/ListToursComponent'
+import CreateTourComponent from './Componenets/CreateTourComponenet'
+import AdminLogin from './Componenets/AdminLogin'
 
 
 function App() {
@@ -31,7 +34,6 @@ function App() {
           <Route exact path="/" component={HomePage}></Route>
           <Route exact path="/view-Tour/I" component={DetailedTourInternational}></Route>
           <Route exact path="/view-Tour/D" component={DetailedTourDomestic}></Route>
-          <Route exact path="/book-Tour/tour/:id" component={Tour}></Route>
           <Route exact path="/book-Tour/:id" component={BookingForm}></Route>
           <Route exact path="/iternary/" component={DetailedIternary}></Route>
           <Route exact path="/booking" component={BookingForm}></Route>
@@ -43,6 +45,11 @@ function App() {
           <Route exact path="/span" component={SearchBySpan}></Route>
           <Route exact path="/Genre" component={Genre}></Route>
           <Route exact path="/tourpackages" component={TourPackages}></Route>
+          
+          
+          <Route exact path="/admin" component={AdminLogin}></Route>
+          <Route exact path="/tourlist" component={ListToursComponent}></Route>
+          <Route exact path="/admin/add-tour" component={CreateTourComponent}></Route>
 
         </Switch>
 

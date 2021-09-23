@@ -20,7 +20,9 @@ public class Booking {
 	private String cost;
 	private int no_of_passenger;
 	private int tid;
-
+	private int uid;
+	@Column(unique=true)
+	private int sessionid;
 
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
@@ -40,17 +42,39 @@ public class Booking {
 	}
 
 	
-	public Booking(int booking_id, String cost, int no_of_passenger, int tid, Login login, List<Passenger> passengers) {
+	public Booking(int booking_id, String cost, int no_of_passenger, int tid, int uid, Login login, List<Passenger> passengers, int sessionid) {
 		super();
 		this.booking_id = booking_id;
 		this.cost = cost;
 		this.no_of_passenger = no_of_passenger;
 		this.tid = tid;
+		this.uid = uid;
+		this.sessionid=sessionid;
 		this.login = login;
 		this.passengers = passengers;
 	}
 
 	
+
+	public int getSessionid() {
+		return sessionid;
+	}
+
+
+	public void setSessionid(int sessionid) {
+		this.sessionid = sessionid;
+	}
+
+
+	public int getUid() {
+		return uid;
+	}
+
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
 
 	public int getTid() {
 		return tid;

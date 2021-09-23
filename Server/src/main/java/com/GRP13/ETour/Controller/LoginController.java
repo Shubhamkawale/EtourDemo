@@ -1,5 +1,7 @@
 package com.GRP13.ETour.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,5 +34,10 @@ public class LoginController {
 		return loginserve.getUserById(user_id);
 	}
 	
+	@GetMapping("Tour/Allusers")
+	public List<Login> getallUsers(){
+		return loginserve.getallUsers();
+		
+	}
 
 }

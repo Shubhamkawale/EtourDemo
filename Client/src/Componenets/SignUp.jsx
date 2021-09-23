@@ -17,6 +17,7 @@ class SignUp extends Component {
             user_id: '',
             user_name: "",
             email_id: "",
+            phoneno: '',
             password: "",
 
         }
@@ -25,6 +26,7 @@ class SignUp extends Component {
         this.changeEmail = this.changeEmail.bind(this);
         this.changePassword = this.changePassword.bind(this);
         this.register = this.register.bind(this);
+        this.changePhoneno = this.changePhoneno.bind(this);
     }
     state = {
         openModal: false
@@ -41,18 +43,23 @@ class SignUp extends Component {
     changePassword = (event) => {
         this.setState({ password: event.target.value });
     }
+    changePhoneno = (event) => {
+        this.setState({ phoneno: event.target.value });
+    }
 
     register = (e) => {
         e.preventDefault();
         let user = {
             user_name: this.state.user_name,
             email: this.state.email_id,
-            password: this.state.password
+            password: this.state.password,
+            phoneno:this.state.phoneno
+
         }
         console.log('user => ' + JSON.stringify(user));
         TourService.addLogin(user)
         alert("Registred Successfully!")
-         console.log("aeeresf")
+        console.log("aeeresf")
         this.onCloseModal()
     }
 
@@ -65,13 +72,17 @@ class SignUp extends Component {
     onCloseModal = () => {
         this.setState({ openModal: false })
     }
-
-
+    
     render() {
+        
+        
+
+    
 
         return (
             <div >
-                <Button variant="primary" onClick={this.onClickButton}>Sign Up</Button>
+               
+               <Button variant="primary" onClick={this.onClickButton}>Sign Up</Button>
 
                 <Modal open={this.state.openModal} onClose={this.onCloseModal}
 
@@ -88,21 +99,25 @@ class SignUp extends Component {
                 >
                     <form className="formSign">
 
-                        <h1 className="h3 fw-normal"><center> Sign In</center></h1>
+                        <h1 className="h3 fw-normal"><center> Sign Up</center></h1>
                         <div className="form-floating">
 
-                            <input type="text" class="form-control" name="user_name"  pattern="[a-zA-Z].{8,50}$" value={this.state.user_name} onChange={this.changeName} required/>
+                            <input type="text" class="form-control" name="user_name" pattern="[a-zA-Z].{8,50}$" value={this.state.user_name} onChange={this.changeName} required />
 
                             <label for="floatingInput">User Name</label>
                         </div>
                         <div class="form-floating ">
 
-                        <input type="text" class="form-control" name="email_id"  pattern="[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]" value={this.state.email_id} onChange={this.changeEmail} required />
+                            <input type="text" class="form-control" name="email_id" pattern="[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]" value={this.state.email_id} onChange={this.changeEmail} required />
                             <label for="floatingInput">Email Id</label>
+                        </div>
+                        <div class="form-floating ">
+                            <input type="text" name="phoneno" class="form-control" value={this.state.phoneno} onChange={this.changePhoneno} required pattern="[0-9]{10}" />
+                            <label for="floatingInput">Phone number</label>
                         </div>
                         <div className="form-floating">
 
-                            <input type="text" type="password" className="form-control" name="password" pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" onChange={this.changePassword} value={this.state.password} required/>
+                            <input type="password" className="form-control" name="password" pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" onChange={this.changePassword} value={this.state.password} required />
 
                             <label for="floatingPassword">Password</label>
                         </div>

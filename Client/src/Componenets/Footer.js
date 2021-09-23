@@ -18,6 +18,7 @@ export default function Footer() {
               <li className="nav-item mb-2"><a href="/view-Tour/D" className="nav-link p-0 text-muted">Domestic</a></li>
               <li className="nav-item mb-2"><a href="/aboutUs" className="nav-link p-0 text-muted">About Us</a></li>
               <li className="nav-item mb-2"><a href="/contactUs" className="nav-link p-0 text-muted">Contact Us</a></li>
+              <li className="nav-item mb-2"><a href="/admin" className="nav-link p-0 text-muted">Admin Login</a></li>
             </ul>
           </div>
 

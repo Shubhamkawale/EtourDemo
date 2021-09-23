@@ -3,6 +3,7 @@ import { Modal } from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
 import { Button } from 'react-bootstrap'
 import { Redirect } from 'react-router';
+import TourService from '../Services/TourService'
 
 
 
@@ -11,15 +12,16 @@ class Login extends Component {
 
     constructor(props) {
         super(props)
-        const token = localStorage.getItem("token")
+        const userId = sessionStorage.getItem("userId")
         let loggedin = true;
-        if (token === null) {
+        if (userId === null) {
             loggedin = false;
         }
         this.state = {
-            user_id: "",
-            password: "",
+            user_email: "",
+            pwd: "",
             loggedin: '',
+            users: [],
             openModal: false,
            
 
@@ -32,28 +34,53 @@ class Login extends Component {
 
     }
 
+    componentDidMount(){
+        TourService.getallUsers().then((res)=>{
+            this.setState({ users: res.data })
+           
+        })
+    }
+    
     //session login
     changeUser(e) {
-        this.setState({ user_id: e.target.value })
+        this.setState({ user_email: e.target.value })
     }
     changePassword(e) {
-        this.setState({ password: e.target.value })
+        this.setState({ pwd: e.target.value })
     }
-    login(e) {
+    login= (e) =>{
         e.preventDefault()
-        const { user_id, password } = this.state
-        //login logic
-        if (user_id === "abc" && password === "123") {
-            localStorage.setItem("token", user_id)
+        const { user_email, pwd } = this.state
+//login logic
+        for(let user of this.state.users){
 
-            this.setState({ loggedin: true })
+            if(user_email === user.email && pwd === user.password){
+                sessionStorage.setItem("userId", user.user_id)
+                sessionStorage.setItem("userName", user.user_name)
+                sessionStorage.setItem("sessionId", Math.floor(Math.random() * 1000000) + 1 )
+            
+                this.setState({ loggedin: true })
+                break;
+            }
+           
+            
         }
+       
+        
+        if(sessionStorage.getItem("userId")== null){
+            alert("invalid user")
+        }
+    
         this.onCloseModal()
     }
 
     logout() {
         alert("Logged out");
-        localStorage.removeItem("token")
+        sessionStorage.removeItem("userId")
+        sessionStorage.removeItem("userName")
+        sessionStorage.removeItem("sessionId")
+        sessionStorage.removeItem("tourid")
+
         
     }
 
@@ -70,20 +97,29 @@ class Login extends Component {
 
     render() {
         
+        
+        
         const loggedin = this.state.loggedin;
-        if (loggedin) {
+       
+        if (this.state.loggedin ) {
             <Redirect to="/" />
         }
+        
+       
             
         let button;
         
-            if (loggedin === true) {
+            if (loggedin || sessionStorage.getItem("userName")=== "Admin" ) {
                 button = <div>
                     <a href="/" >
+                    
                         <Button onClick={this.logout} variant="primary">Log Out</Button>
+                        <br />
+                        <label style={{ "color": "#ffffff" }}>Welcome ! {sessionStorage.getItem("userName")}</label>
+                        
                     </a>
-                    <br />
-                    <label style={{ "color": "#ffffff" }}>{localStorage.getItem("token")}</label>
+                    
+                    
                 </div>;
             } else {
                
@@ -94,6 +130,7 @@ class Login extends Component {
 
         return (
             <div >
+                
 
                 {button}
                 <Modal open={this.state.openModal} onClose={this.onCloseModal}
@@ -117,7 +154,7 @@ class Login extends Component {
 
                         <div className="form-floating">
 
-                            <input type="text" class="form-control"  name="user_id" required pattern="[a-zA-Z]{8,50}" value={this.state.user_id} onChange={this.changeUser} />
+                            <input type="email" class="form-control"  name="user_email" required pattern="[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]" value={this.state.user_email} onChange={this.changeUser} />
 
 
                             <label for="floatingInput">User Name</label>
@@ -127,7 +164,7 @@ class Login extends Component {
 
 
                         <div className="form-floating">
-                            <input type="password" className="form-control"  id="floatingPassword" name="password" required value={this.state.password} onChange={this.changePassword} />
+                            <input type="password" className="form-control"  id="floatingPassword" name="pwd" required value={this.state.pwd} onChange={this.changePassword} />
                             <label for="floatingInput">Password</label>
                         </div>
                         <div style={{ 'float': 'right' }}>

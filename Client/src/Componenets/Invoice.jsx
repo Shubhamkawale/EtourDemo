@@ -5,7 +5,11 @@ import InvoiceComponent from './InvoiceComponent';
 
 
 class Invoice extends Component {
+
+
     render() {
+        console.log("In invoice")
+
         return (
             <div>
                 <ReactToPrint

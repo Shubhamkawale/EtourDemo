@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Formik, Form, ErrorMessage } from 'formik'
 import { Button } from 'react-bootstrap'
 import TourService from '../Services/TourService'
 import { Redirect } from 'react-router';
@@ -14,10 +13,11 @@ export default class BookingForm extends Component {
     constructor(props) {
         super(props);
 
-        const token = localStorage.getItem("token")
+        const userId = sessionStorage.getItem("userId")
+
 
         let loggedin = true;
-        if (token == null) {
+        if (userId == null) {
             loggedin = false;
         }
 
@@ -34,7 +34,9 @@ export default class BookingForm extends Component {
             no_of_passenger: 0,
             cost: 0,
             finalcost: "",
-            loggedin
+            loggedin,
+            sessionid: '',
+            uid: '',
 
         }
 
@@ -62,18 +64,24 @@ export default class BookingForm extends Component {
     }
 
     //add new passanger
-    savePassenger = async (e) => {
+    savePassenger = (e) => {
         e.preventDefault();
 
-        let passenger = { pname: this.state.pname, email: this.state.email, phoneno: this.state.phoneno, age: this.state.age, address: this.state.address, uid: this.state.uid, booking_id: this.state.booking_id };
+        let passenger = {
+            pname: this.state.pname,
+            email: this.state.email,
+            phoneno: this.state.phoneno,
+            age: this.state.age,
+            address: this.state.address,
+            uid: sessionStorage.getItem("userId"),
+            sessionid: sessionStorage.getItem("sessionId")
+        };
 
         console.log('passenger => ' + JSON.stringify(passenger));
 
-        await this.setState({ no_of_passenger: this.state.no_of_passenger + 1 });
+        this.setState({ no_of_passenger: this.state.no_of_passenger + 1 });
 
-        await this.setState({ cost: this.state.tour.package_cost * (this.state.no_of_passenger) })
-
-        console.log("AA ", this.state.cost)
+        this.setState({ cost: this.state.tour.package_cost * (this.state.no_of_passenger + 1) })
 
         TourService.addPassenger(passenger).then(res => {
             console.log("this is a tour", this.state.tour);
@@ -82,21 +90,29 @@ export default class BookingForm extends Component {
     }
 
     //book tour
-    changeNoOfPassenger = (event) => {
+    changeNoOfPassenger =async (event) => {
 
         let book = {
             cost: this.state.cost,
             user_id: 1,
             tid: this.props.location.state,
             no_of_passenger: this.state.no_of_passenger,
-            tour_id: this.state.tour.tour_id
+            tour_id: this.state.tour.tour_id,
+            uid: sessionStorage.getItem("userId"),
+            sessionid: sessionStorage.getItem("sessionId")
+
 
         }
 
-        TourService.bookTour(book).then(res => {
+        await TourService.bookTour(book).then(res => {
             console.log("this is booking table", book)
         })
+
+
+        
+        sessionStorage.setItem("tourid", this.state.tour.tour_id)
         this.props.history.push('/invoice');
+        
     }
 
     changepName = (event) => {
@@ -130,7 +146,7 @@ export default class BookingForm extends Component {
     }
 
     render() {
-        if (this.state.loggedin == false) {
+        if (this.state.loggedin === false) {
             alert("Please login to book a tour...")
             return <Redirect to="/" />
         }
@@ -179,7 +195,7 @@ export default class BookingForm extends Component {
                                 <h2>Enter Passenger Details...</h2>
                                 <div className="container col-6">
                                     <div className="form-floating ">
-                                        <input name="pname" class="form-control" value={this.state.pname} onChange={this.changepName} required pattern="[a-zA-Z]{8,50}" />
+                                        <input name="pname" class="form-control" value={this.state.pname} onChange={this.changepName} required pattern="[a-zA-Z]{8}" />
                                         <label for="floatingInput">Passenger Name</label>
                                     </div>
                                     <div className="form-floating">
@@ -209,7 +225,7 @@ export default class BookingForm extends Component {
                                     <div style={{ 'float': 'right' }}>
                                         <Button variant="primary" onClick={this.savePassenger}>save Passenger</Button>
                                         <span>&nbsp;</span>
-                                        <Button variant="primary" type="submit" onClick="">Add Passenger</Button>
+                                        <Button variant="primary" type="submit" onClick={this.add}>Add Passenger</Button>
                                         <span>&nbsp;</span>
                                         <Button onClick={this.changeNoOfPassenger}>Book</Button>
                                     </div>

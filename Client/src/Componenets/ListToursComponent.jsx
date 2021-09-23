@@ -16,7 +16,7 @@ class ListToursComponent extends Component {
 
     //add tour
     addTour() {
-        this.props.history.push('/add-tour');
+        this.props.history.push('/admin/add-tour');
     }
 
     //rest api call
@@ -28,7 +28,7 @@ class ListToursComponent extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{"width":"1200px","margin-left":"60px"}}>
                 <h2 className="text-center">Tours List</h2>
                 <br></br>
                 <div className = "row">
@@ -47,7 +47,6 @@ class ListToursComponent extends Component {
                                 <th> Start Date </th>
                                 <th> End Date </th>
                                 <th> No Of Seats Booked </th>
-                                <th> Actions</th>
                             </tr>
                         </thead>
                         <tbody>

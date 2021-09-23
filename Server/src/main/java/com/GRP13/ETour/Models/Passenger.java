@@ -11,10 +11,12 @@ public class Passenger {
 	private int pid;
 	private String pname;
 	private int age;
-	private long uid;
+	private int bookingid;
 	private String email;
 	private String address;
 	private int phoneno;
+	private int sessionid;
+	private int uid;
 	
 	
 
@@ -25,17 +27,50 @@ public class Passenger {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Passenger(int pid, String pname, int age, long uid, String email, String address, int phoneno,
-			Booking booking) {
+
+	
+	public Passenger(int pid, String pname, int age, int bookingid, String email, String address, int phoneno,
+			int sessionid, int uid) {
 		super();
 		this.pid = pid;
 		this.pname = pname;
 		this.age = age;
-		this.uid = uid;
+		this.bookingid = bookingid;
 		this.email = email;
 		this.address = address;
 		this.phoneno = phoneno;
-		
+		this.sessionid = sessionid;
+		this.uid = uid;
+	}
+
+
+
+	public int getUid() {
+		return uid;
+	}
+
+
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
+
+
+	public int getBookingid() {
+		return bookingid;
+	}
+
+	public void setBookingid(int bookingid) {
+		this.bookingid = bookingid;
+	}
+
+	public int getSessionid() {
+		return sessionid;
+	}
+
+	public void setSessionid(int sessionid) {
+		this.sessionid = sessionid;
 	}
 
 	public int getPid() {
@@ -62,14 +97,7 @@ public class Passenger {
 		this.age = age;
 	}
 
-	public long getUid() {
-		return uid;
-	}
-
-	public void setUid(long uid) {
-		this.uid = uid;
-	}
-
+	
 	public String getEmail() {
 		return email;
 	}

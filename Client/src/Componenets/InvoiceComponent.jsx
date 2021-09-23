@@ -1,10 +1,50 @@
 import React, { Component } from 'react';
+import TourService from '../Services/TourService';
+import { Button } from "react-bootstrap"
 
 
 
 class InvoiceComponent extends Component {
 
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            user: {},
+            passengers: [],
+            booking: {},
+            tour: {},
+        }
+
+    }
+
+    componentDidMount() {
+        const userId = sessionStorage.getItem("userId")
+        const sessionId = sessionStorage.getItem("sessionId")       
+        const tourid = sessionStorage.getItem("tourid")
+        TourService.getUserById(userId).then((res) => {
+            this.setState({ user: res.data })
+
+
+        })
+
+        TourService.getAllPassengerById(sessionId).then((res) => {
+            this.setState({ passengers: res.data })
+        })
+
+        TourService.getBookingById(sessionId).then((res) => {
+            this.setState({ booking: res.data })
+              
+            
+        })
+
+       
+        TourService.getTourById(tourid).then((res) => {
+            this.setState({ tour: res.data })
+        })
+        
+
+    }
 
     paymentInfo() {
         alert("Payment Done")
@@ -12,6 +52,8 @@ class InvoiceComponent extends Component {
 
 
     render() {
+        console.log("booking",this.state.booking)
+        
         return (
             <div className="print">
                 <div class="card">
@@ -40,142 +82,112 @@ class InvoiceComponent extends Component {
                                 </div>
 
                                 <div class="row InvoiceInfo">
-                                    <div class="col-xl-8 w-50">
-                                        <table className="table table-striped table-borderless">
-                                            <thead bgcolor="skyblue">
+
+                                    <table className="table table-striped table-borderless">
+                                        <thead bgcolor="skyblue">
+                                            <tr>
+                                                <th>Bill To</th>
+                                                <th>Invoice Id</th>
+                                                <th>Customer ID</th>
+                                                <th>Contact number</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
                                                 <tr>
-                                                    <th>Bill To</th>
-
+                                                    <td>{this.state.user.user_name} </td>
+                                                    <td>{this.state.booking.booking_id}</td>
+                                                    <td>{this.state.user.user_id}</td>
+                                                    <td>{this.state.user.phoneno}</td>
+                                                    <td>{new Date().toLocaleDateString()}</td>
                                                 </tr>
+                                            }
+                                        </tbody>
+                                    </table>
 
 
-                                            </thead>
-                                            <tbody>
-                                                {
-                                                    <tr>
-                                                        <td>Name <br />Address<br />Phone</td>
-                                                    </tr>
+                                </div>
+                                <hr />
+                                <div class="row InvoiceInfo">
+
+                                    <table className="table table-striped table-borderless">
+                                        <thead bgcolor="skyblue">
+                                            <tr>
+                                                <th>Package Name</th>
+                                                <th>Package Type</th>
+                                                <th>Tour Location</th>
+                                                <th>Tour Start Date</th>
+                                                <th>Tour End Date</th>
+                                            </tr> 
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                <tr>
+                                                    <td>{this.state.tour.package_name} </td>
+                                                    <td>{this.state.tour.package_type}</td>
+                                                    <td>{this.state.tour.tour_location}</td>
+                                                    <td>{this.state.tour.start_date}</td>
+                                                    <td>{this.state.tour.end_date}</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
 
 
-                                                }
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div className="col-xl-4 w-50">
-                                        <div className="row swaraj">
-                                            <div className="col swaraj">
-                                                <table className="table table-striped table-borderless" align="right">
-                                                    <thead bgcolor="skyblue">
-                                                        <tr>
-                                                            <th>Invoice</th>
-                                                            <th>Date</th>
-
-                                                        </tr>
-
-
-                                                    </thead>
-                                                    <tbody>
-                                                        {
-                                                            <tr>
-                                                                <td>123</td>
-                                                                <td>{new Date().toLocaleDateString()}</td>
-                                                            </tr>
-
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div className="row swaraj">
-                                            <div className="col swaraj">
-                                                <table className="table table-striped table-borderless" align="right">
-                                                    <thead bgcolor="skyblue">
-                                                        <tr>
-                                                            <th>Customer ID</th>
-                                                            <th>Terms</th>
-
-                                                        </tr>
-
-
-                                                    </thead>
-                                                    <tbody>
-                                                        {
-                                                            <tr>
-                                                                <td>123</td>
-                                                                <td>terms</td>
-                                                            </tr>
-
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                                 <hr />
 
-                                <div className="row InvoiceTable mx-1 justify-content-center">
+                                <div className="row InvoiceTable  justify-content-center">
                                     <table className="table table-striped table-borderless">
                                         <thead className="text-black" bgcolor="skyblue">
+                                            <tr><th colSpan="3">Customer Details</th></tr>
                                             <tr>
-                                                <th>Passenger</th>
+                                                <th>Name</th>
+                                                <th>Contact Number</th>
                                                 <th>Age</th>
-                                                <th>Price</th>
-                                                <th>Total</th>
-
                                             </tr>
-
 
                                         </thead>
                                         <tbody>
                                             {
+                                                this.state.passengers.map(
+                                                    passenger =>
+                                                        <tr>
 
-                                                <tr>
-                                                    <td> Ronaldo </td>
-                                                    <td> 36 </td>
-                                                    <td> 8000</td>
-                                                    <td> 8000</td>
+                                                            <td> {passenger.pname}  </td>
+                                                            <td> {passenger.phoneno}  </td>
+                                                            <td>{passenger.age} </td>
 
-                                                </tr>
+                                                        </tr>
+                                                )}
+                                            <tr>
+                                                <th className="w-50" colSpan="2">  Total Amount</th>
+                                                <td> {this.state.booking.cost}</td>
 
-                                            }
+                                            </tr>
+                                            <tr>
+                                                <th className="w-50" colSpan="2">  GST </th>
+                                                <td> 18%</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th className="w-50" colSpan="2">  Final Cost </th>
+                                                <td> {this.state.booking.cost *1.18}</td>
+
+                                            </tr>
                                         </tbody>
 
 
 
                                     </table>
                                 </div>
-                                <div class="row">
-                                    <div class="col AdditionalInfo w-50">
-                                        <p class="ms-3">Add additional notes and payment information</p>
 
-                                    </div>
-                                    <div class="col TotalAmount w-50">
-                                        <table className="table table-striped table-borderless w-100">
-                                            <tbody>
-                                                {
-
-                                                    <tr>
-                                                        <th className="w-50"> Sub Total <br /> Tax <br /> Total Amount</th>
-                                                        <td> 8000</td>
-
-                                                    </tr>
-
-                                                }
-                                            </tbody>
-
-
-
-                                        </table>
-                                    </div>
-                                </div>
                                 <hr />
                                 <div class="row">
-                                    <div class="col-xl-10">
-                                        <p>Thank you for your purchase</p>
-                                    </div>
-                                    <div class="col-xl-2">
-                                        <button type="button" class="btn btn-primary text-capitalizebackground-color:#60bdf3" onClick={this.paymentInfo}>Pay Now</button>
+
+                                    <div style={{ 'float': 'right' }}>
+                                        <Button variant="primary" onClick={this.paymentInfo}>Book</Button>
                                     </div>
                                 </div>
                             </div>
