@@ -91,7 +91,7 @@ class TourType extends Component {
 
                             <Link to={{ pathname: "/view-Tour/D" }} >
                                 <Button variant="primary" size="lg" active style={{"height":"50px"}}>
-                                    domestic button  </Button>
+                                View Tours...  </Button>
                             </Link>
 
                         </Col>

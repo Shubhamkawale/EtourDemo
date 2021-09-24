@@ -8,7 +8,6 @@ import MyNavbar from './Componenets/MyNavBar';
 import DetailedTourInternational from './Componenets/DetailedTourInternational';
 import DetailedTourDomestic from './Componenets/DetailedTourDomestic'
 import BookingForm from './Componenets/BookingForm';
-import Tour from './Componenets/DetailedIternary';
 import DetailedIternary from './Componenets/DetailedIternary';
 import AboutUs from './Componenets/AboutUs';
 import ContactUs from './Componenets/ContactUs';

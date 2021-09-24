@@ -23,24 +23,24 @@ class Login extends Component {
             loggedin: '',
             users: [],
             openModal: false,
-           
 
-        }   
+
+        }
 
         this.changeUser = this.changeUser.bind(this)
         this.changePassword = this.changePassword.bind(this)
         this.login = this.login.bind(this)
-        this.logout=this.logout.bind(this)
+        this.logout = this.logout.bind(this)
 
     }
 
-    componentDidMount(){
-        TourService.getallUsers().then((res)=>{
+    componentDidMount() {
+        TourService.getallUsers().then((res) => {
             this.setState({ users: res.data })
-           
+
         })
     }
-    
+
     //session login
     changeUser(e) {
         this.setState({ user_email: e.target.value })
@@ -48,29 +48,37 @@ class Login extends Component {
     changePassword(e) {
         this.setState({ pwd: e.target.value })
     }
-    login= (e) =>{
+    login = (e) => {
         e.preventDefault()
         const { user_email, pwd } = this.state
-//login logic
-        for(let user of this.state.users){
+        //login logic
+        if (user_email === "Admin" && pwd === "admin") {
+            sessionStorage.setItem("userName", user_email)
+            sessionStorage.setItem("userId", "00000")
 
-            if(user_email === user.email && pwd === user.password){
-                sessionStorage.setItem("userId", user.user_id)
-                sessionStorage.setItem("userName", user.user_name)
-                sessionStorage.setItem("sessionId", Math.floor(Math.random() * 1000000) + 1 )
-            
-                this.setState({ loggedin: true })
-                break;
-            }
-           
-            
+            this.setState({ loggedin: true })
         }
-       
-        
-        if(sessionStorage.getItem("userId")== null){
+        else {
+            for (let user of this.state.users) {
+
+                if (user_email === user.email && pwd === user.password) {
+                    sessionStorage.setItem("userId", user.user_id)
+                    sessionStorage.setItem("userName", user.user_name)
+                    sessionStorage.setItem("sessionId", Math.floor(Math.random() * 1000000) + 1)
+
+                    this.setState({ loggedin: true })
+                    break;
+                }
+
+
+            }
+        }
+
+
+        if (sessionStorage.getItem("userId") == null) {
             alert("invalid user")
         }
-    
+
         this.onCloseModal()
     }
 
@@ -81,10 +89,10 @@ class Login extends Component {
         sessionStorage.removeItem("sessionId")
         sessionStorage.removeItem("tourid")
 
-        
+
     }
 
-    
+
     //modal function
     onClickButton = e => {
         e.preventDefault()
@@ -96,41 +104,40 @@ class Login extends Component {
     }
 
     render() {
-        
-        
-        
+
+
+
         const loggedin = this.state.loggedin;
-       
-        if (this.state.loggedin ) {
+        
+        let button;
+
+        if(this.state.loggedin && sessionStorage.getItem("userName") === "Admin"){
+            return <Redirect to="/tourlist" />
+           
+        }
+
+        if (this.state.loggedin) {
             <Redirect to="/" />
         }
-        
-       
-            
-        let button;
-        
-            if (loggedin || sessionStorage.getItem("userName")=== "Admin" ) {
-                button = <div>
-                    <a href="/" >
-                    
-                        <Button onClick={this.logout} variant="primary">Log Out</Button>
-                        <br />
-                        <label style={{ "color": "#ffffff" }}>Welcome ! {sessionStorage.getItem("userName")}</label>
-                        
-                    </a>
-                    
-                    
-                </div>;
-            } else {
-               
-                button = <Button variant="primary" onClick={this.onClickButton}>LogIn</Button>;
-            }
-        
-        
+
+
+
+        if (loggedin || sessionStorage.getItem("userName") === "Admin") {
+            button = <a href="/" >
+                <Button onClick={this.logout} variant="primary">Log Out</Button>
+                <br />
+                <label style={{ "color": "#ffffff" }}>Welcome ! {sessionStorage.getItem("userName")}</label>
+            </a>
+        } else {
+            button = <Button variant="primary" onClick={this.onClickButton}>LogIn</Button>;
+        }
+
+
 
         return (
             <div >
-                
+
+
 
                 {button}
                 <Modal open={this.state.openModal} onClose={this.onCloseModal}
@@ -154,7 +161,7 @@ class Login extends Component {
 
                         <div className="form-floating">
 
-                            <input type="email" class="form-control"  name="user_email" required pattern="[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]" value={this.state.user_email} onChange={this.changeUser} />
+                            <input type="email" class="form-control" name="user_email" required pattern="[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]" value={this.state.user_email} onChange={this.changeUser} />
 
 
                             <label for="floatingInput">User Name</label>
@@ -164,7 +171,7 @@ class Login extends Component {
 
 
                         <div className="form-floating">
-                            <input type="password" className="form-control"  id="floatingPassword" name="pwd" required value={this.state.pwd} onChange={this.changePassword} />
+                            <input type="password" className="form-control" id="floatingPassword" name="pwd" required value={this.state.pwd} onChange={this.changePassword} />
                             <label for="floatingInput">Password</label>
                         </div>
                         <div style={{ 'float': 'right' }}>

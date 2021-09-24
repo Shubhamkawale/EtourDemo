@@ -51,6 +51,7 @@ export default class BookingForm extends Component {
         this.changeAddress = this.changeAddress.bind(this);
         this.changeUid = this.changeUid.bind(this);
         this.changeNoOfPassenger = this.changeNoOfPassenger.bind(this);
+        this.changeRoom = this.changeRoom.bind(this);
     }
 
 
@@ -79,9 +80,14 @@ export default class BookingForm extends Component {
 
         console.log('passenger => ' + JSON.stringify(passenger));
 
-        this.setState({ no_of_passenger: this.state.no_of_passenger + 1 });
-
-        this.setState({ cost: this.state.tour.package_cost * (this.state.no_of_passenger + 1) })
+        if(this.state.room === "single")
+        {
+            this.setState({ cost: this.state.tour.package_cost * (this.state.no_of_passenger + 1) })
+        }
+        else
+        {
+            this.setState({ cost: (this.state.tour.package_cost * 0.8)  * (this.state.no_of_passenger + 1) })
+        }
 
         TourService.addPassenger(passenger).then(res => {
             console.log("this is a tour", this.state.tour);
@@ -113,6 +119,10 @@ export default class BookingForm extends Component {
         sessionStorage.setItem("tourid", this.state.tour.tour_id)
         this.props.history.push('/invoice');
         
+    }
+
+    changeRoom = (event) => {
+        this.setState({ room: event.target.value })
     }
 
     changepName = (event) => {
@@ -220,6 +230,14 @@ export default class BookingForm extends Component {
                                     <div className="form-floating ">
                                         <input type="text" name="address" class="form-control" value={this.state.address} onChange={this.changeAddress} required />
                                         <label for="floatingInput" >Address </label>
+                                    </div>
+
+                                    <div className=" form-floating" onChange={this.changeRoom}>
+
+                                        <input type="radio" name="room" value="single" />Single Room
+                                        <br />
+                                        <input type="radio" name="room" value="twin" />Twin Sharing Basis
+
                                     </div>
 
                                     <div style={{ 'float': 'right' }}>

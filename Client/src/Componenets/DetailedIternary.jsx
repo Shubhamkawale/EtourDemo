@@ -54,17 +54,18 @@ export default class DetailedIternary extends Component {
                 <div>
 
 
-                    <Card history={this.props.history}>
-                    <h1>{this.state.tour.package_name}</h1>
-                        <Card.Img src={this.state.tour.img} style={{"height":"400px","width":"800px","margin":"auto"}} />
+                    <Card id="TourCard" history={this.props.history}>
+                    <h1 id="tourHeader">{this.state.tour.package_name}</h1>
+                        <Card.Img src={this.state.tour.img} style={{"height":"400px","width":"800px","margin":"auto"}} id="iternaryImage"/>
                         
                         <Card.Body>
-                            <p><h3>Tour Discripton</h3>
+                            <p id="tourdescription">
+                                <h3>Tour Discripton</h3>
                                 <h5>{this.state.tour.package_desc}</h5>
 
                             </p>
-                            <h3>Tour Iternary</h3>
-                            <Table striped bordered hover responsive="lg" style={{"margin":"auto","width":"auto"}}  >
+                            <h3 id="iternaryHeader">Tour Iternary</h3>
+                            <Table striped bordered hover responsive="lg" style={{"margin":"auto","width":"auto"}} id="iternaryTable" >
 
                                 <th>
 
@@ -87,7 +88,7 @@ export default class DetailedIternary extends Component {
                                 state: this.state.tour.tour_id
                             }} onc>
 
-                                <Button variant="primary" >
+                                <Button className="bookButton" variant="primary" >
                                     Book Tour</Button>
                             </Link>
                         </Card.Footer>

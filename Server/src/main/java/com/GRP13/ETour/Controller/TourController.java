@@ -1,8 +1,11 @@
 package com.GRP13.ETour.Controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.GRP13.ETour.Models.Tours;
+import com.GRP13.ETour.Repository.ToursRepository;
 import com.GRP13.ETour.Service.TourService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -21,7 +25,6 @@ public class TourController {
 
 	@Autowired
 	private TourService tourserv;
-	
 	
 	//returns all 
 	@GetMapping("/Tour")
@@ -44,7 +47,7 @@ public class TourController {
 	}
 	
 	//Delete a tour
-	@DeleteMapping(value="Tour/delete/{tour_id}")
+	@DeleteMapping(value="Tour/Delete/{tour_id}")
 	public void deleteTour(@PathVariable int tour_id) {
 		tourserv.deleteTour(tour_id);
 	}
@@ -91,4 +94,7 @@ public class TourController {
 		public List<Tours> getTourByPackageType(@PathVariable String packagetype){
 			return tourserv.getTourByPackageType(packagetype);
 		}
+		
+		
+		
 }

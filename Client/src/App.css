@@ -241,14 +241,14 @@ div#TourCard {
 
  p#tourdescription {
   background-color: lightsteelblue;
-  height: 80px;
+  height: auto;
   text-shadow: 2px 2px 5px #001dd9a6;
   margin-top: 20px;
 }
 
 h1#tourHeader {
   background-color: lightsteelblue;
-  height: 55px;
+  height: auto;
   text-shadow: 2px 2px 5px #001dd9a6;
 }
 

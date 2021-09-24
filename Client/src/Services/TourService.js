@@ -72,6 +72,10 @@ class TourService {
         return axios.get(TOUR_URL+"/Booking/id/"+sessionId);
     }
 
+    deleteTour(tour_id){
+        return axios.delete(TOUR_URL +"/Delete"+tour_id);
+    }
+
 }
 
 
